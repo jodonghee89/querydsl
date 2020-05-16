@@ -676,4 +676,23 @@ public class QuerydslBasicTests {
 
 		resultList.forEach(System.out::println);
 	}
+
+	@Test
+	public void sqlFunction2() {
+		List<String> resultList = queryFactory
+			.select(member.username)
+			.from(member)
+			.where(member.username
+				.eq(Expressions.stringTemplate("function('upper', {0})", member.username)))
+			.fetch();
+
+		resultList.forEach(a -> {
+			System.out.println(a);
+		});
+
+
+
+
+
+	}
 }
